@@ -40,7 +40,8 @@ Predict the spread of floodwaters across low-lying areas to enable timely evacua
 Breadth-First Search (BFS): BFS is ideal for level-by-level traversal in graphs, making it suitable for modeling the gradual spread of floodwaters across connected areas. The output is a list of flooded regions with their respective flooding times, allowing predictions of which areas will be affected next.
 
 **Time Complexity**  
-O(V+E), where V is the number of regions (nodes) and E is the number of connections (edges).
+O(V+E), where V is the number of regions (nodes) and E is the number of connections (edges).  
+[CODE](https://github.com/01fe23bcs120/course-project.github.io/blob/main/bfs.cpp)
 
 ## Conclusion
 These algorithms address critical aspects of a disaster response system, ensuring optimal connectivity, task prioritization, and predictive capabilities. While the time complexities vary based on the scenario, their integration ensures an efficient and effective response to emergencies.
