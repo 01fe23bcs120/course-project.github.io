@@ -25,7 +25,8 @@ Rescue operations must be prioritized based on urgency (e.g., severity of the si
 Merge Sort: Merge Sort is a stable, divide-and-conquer sorting algorithm that ensures consistent results and optimal time complexity for sorting large datasets. The output is a sorted list of tasks based on the selected priority criterion (e.g., ascending deadlines or descending urgency).
 
 **Time Complexity**  
-O(nlogn), where n is the number of tasks.
+O(nlogn), where n is the number of tasks.  
+[CODE](https://github.com/01fe23bcs120/course-project.github.io/blob/main/Mergesort.cpp )
 
 ## 3. Flood Path Prediction
 **Problem Statement**  
