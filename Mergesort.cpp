@@ -1,54 +1,60 @@
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
-
-struct Task {
-    string name;
-    int deadline;
-};
-
-void merge(vector<Task>& tasks, int left, int mid, int right) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
-    vector<Task> L(n1), R(n2);
-    for (int i = 0; i < n1; ++i) L[i] = tasks[left + i];
-    for (int i = 0; i < n2; ++i) R[i] = tasks[mid + 1 + i];
-
-    int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        if (L[i].deadline <= R[j].deadline) {
-            tasks[k++] = L[i++];
-        } else {
-            tasks[k++] = R[j++];
+void merge(vector<pair<int,int>> &b,vector<pair<int,int>> &c,vector<pair<int,int>> &a)
+{
+    int i=0,j=0,k=0,p=b.size(),q=c.size();
+    while(i<p && j<q)
+    {
+        if(b[i].second>=c[j].second)
+        {
+            a[k] = b[i];
+            i++;
         }
+        else
+        {
+            a[k] = c[j];
+            j++;
+        }
+        k++;
     }
 
-    while (i < n1) tasks[k++] = L[i++];
-    while (j < n2) tasks[k++] = R[j++];
+    while(i<p)
+    {
+        a[k]=b[i];
+        i++;
+        k++;
+    }
+    while(j<q)
+    {
+        a[k]=c[j];
+        j++;
+        k++;
+    }
 }
 
-void mergeSort(vector<Task>& tasks, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        mergeSort(tasks, left, mid);
-        mergeSort(tasks, mid + 1, right);
-        merge(tasks, left, mid, right);
+void mergesort(vector<pair<int,int>> &a)
+{
+    if(a.size()>1)
+    {
+        int half = a.size()/2;
+        vector<pair<int,int>> b(a.begin(),a.begin()+half);
+        vector<pair<int,int>> c(a.begin()+half,a.end());
+        mergesort(b);
+        mergesort(c);
+        merge(b,c,a);
     }
 }
 
-int main() {
-    vector<Task> tasks = {
-        {"Rescue Team A", 3},
-        {"Rescue Team B", 1},
-        {"Rescue Team C", 2}
-    };
-
-    mergeSort(tasks, 0, tasks.size() - 1);
-
-    for (const auto& task : tasks) {
-        cout << task.name << " - Deadline: " << task.deadline << endl;
+void mergesort_8()
+{
+    vector<pair<int,int>> tasks = {{1,34},{2,0},{3,45},{4,6},{5,5}};
+    cout << "Task number and their priority level : \n\nTask\tPriority\n\n";
+    for(auto &pair:tasks)
+    {
+        cout << pair.first << " \t " << pair.second << endl;
     }
-    return 0;
+    cout << "\nOn sorting the tasks based on priority level : \n\nTask\tPriority\n\n";
+    mergesort(tasks);
+    for(auto &pair:tasks)
+    {
+        cout << pair.first << " \t " << pair.second << endl;
+    }
 }
